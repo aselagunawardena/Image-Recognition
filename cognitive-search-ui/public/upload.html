@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Files</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Upload Files</h1>
+        <p class="description">
+            Upload files to the Azure Blob Storage container. These files will be indexed for future searches.
+        </p>
+    </header>
+
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Search</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/upload">Upload</a></li>
+        </ul>
+    </nav>
+
+    <div class="page">
+        <form id="upload-form" class="upload-form">
+            <label for="file-input" id="file-label" class="custom-file-label">Choose File</label>
+            <input type="file" id="file-input" class="custom-file-input" />
+            <p id="file-name" class="file-name">No file chosen</p>
+            <button type="button" class="upload-button" onclick="uploadFile()">Upload</button>
+        </form>
+        <p id="upload-status"></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Cognitive Search UI. Powered by Azure.</p>
+    </footer>
+
+    <script>
+        // Update the label text when a file is selected
+        const fileInput = document.getElementById("file-input");
+        const fileNameDisplay = document.getElementById("file-name");
+
+        fileInput.addEventListener("change", () => {
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = fileInput.files[0].name;
+            } else {
+                fileNameDisplay.textContent = "No file chosen";
+            }
+        });
+
+        async function uploadFile() {
+            const file = fileInput.files[0];
+            const status = document.getElementById("upload-status");
+
+            if (!file) {
+                status.textContent = "Please select a file to upload.";
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            try {
+                const response = await fetch("/upload", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    status.textContent = "File uploaded successfully!";
+                } else {
+                    status.textContent = "Failed to upload file.";
+                }
+            } catch (error) {
+                console.error("Error uploading file:", error);
+                status.textContent = "Error uploading file.";
+            }
+        }
+    </script>
+</body>
+</html>
