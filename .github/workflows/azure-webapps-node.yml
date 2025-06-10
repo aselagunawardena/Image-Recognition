@@ -78,7 +78,7 @@ jobs:
           --name ${{ env.AZURE_WEBAPP_NAME }} \
           --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
           --slot staging \
-            --startup-file "npm start"
+            --startup-file "cd cognitive-search-ui && npm start"
 
   swap-slots:
     name: Swap Staging to Production
