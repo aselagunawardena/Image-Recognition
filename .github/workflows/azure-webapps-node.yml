@@ -65,11 +65,13 @@ jobs:
     # Step 2: Deploy to Staging Slot using Azure CLI
     - name: Deploy to Staging Slot
       run: |
-        az webapp deployment source config-zip \
+        cd ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        zip -r app.zip . # Create a zip file for deployment
+        az webapp deploy \
           --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
           --name ${{ env.AZURE_WEBAPP_NAME }} \
           --slot staging \
-          --src ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          --src-path app.zip
 
     - name: Set Startup Command
       run: |
