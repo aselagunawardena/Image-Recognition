@@ -1,4 +1,4 @@
-name: Deploy Bicep to Azure
+name: Deploy WebApp to Azure
 
 on:
   push:
