@@ -37,6 +37,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: List files in package path
+    run: |
+      ls -R ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
@@ -54,7 +58,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: node-app
-        path: .
+        path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
   deploy-to-staging:
     name: Deploy to Staging Slot
