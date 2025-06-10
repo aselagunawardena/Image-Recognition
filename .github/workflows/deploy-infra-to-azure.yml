@@ -5,6 +5,9 @@ on:
     branches:
       - main # Trigger deployment on pushes to the main branch
 
+env:
+  AZURE_RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
