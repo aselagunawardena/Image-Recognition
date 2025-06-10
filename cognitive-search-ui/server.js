@@ -19,15 +19,17 @@ app.get("/", (req, res) => res.sendFile(path.join(__dirname, "public", "index.ht
 app.get("/about", (req, res) => res.sendFile(path.join(__dirname, "public", "about.html")));
 app.get("/upload", (req, res) => res.sendFile(path.join(__dirname, "public", "upload.html")));
 
+require("dotenv").config(); // Load environment variables from .env
+
 // Azure Cognitive Search Configuration
-const SEARCH_SERVICE_NAME = "";
-const SEARCH_API_KEY = "";
-const INDEX_NAME = "";
+const SEARCH_SERVICE_NAME = process.env.SEARCH_SERVICE_NAME;
+const SEARCH_API_KEY = process.env.SEARCH_API_KEY;
+const INDEX_NAME = process.env.INDEX_NAME;
 
 // Azure Storage Configuration
-const STORAGE_ACCOUNT_NAME = "";
-const STORAGE_ACCOUNT_KEY = "";
-const CONTAINER_NAME = "";
+const STORAGE_ACCOUNT_NAME = process.env.STORAGE_ACCOUNT_NAME;
+const STORAGE_ACCOUNT_KEY = process.env.STORAGE_ACCOUNT_KEY;
+const CONTAINER_NAME = process.env.CONTAINER_NAME;
 
 // Function to generate SAS token
 async function generateSasToken(blobName) {
