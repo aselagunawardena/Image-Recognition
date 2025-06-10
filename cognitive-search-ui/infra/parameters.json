@@ -6,13 +6,13 @@
         "value": "Australia East"
       },
       "appServicePlanName": {
-        "value": "acemyAppServicePlan"
+        "value": "acemyImgTaggingPlan"
       },
       "skuName": {
         "value": "P1v2"
       },
       "webAppName": {
-        "value": "acemyWebApp"
+        "value": "acemyImgTaggingWebApp"
       },
       "slotName": {
         "value": "staging"
