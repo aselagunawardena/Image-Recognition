@@ -1,9 +1,11 @@
 name: Deploy Bicep to Azure
 
+# on:
+#   push:
+#     branches:
+#       - main # Trigger deployment on pushes to the main branch
 on:
-  push:
-    branches:
-      - main # Trigger deployment on pushes to the main branch
+  workflow_dispatch: # Manual trigger
 
 env:
   AZURE_RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
