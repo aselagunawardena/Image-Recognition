@@ -25,5 +25,5 @@ jobs:
       run: |
         az deployment group create \
           --resource-group $AZURE_RESOURCE_GROUP \
-          --template-file ./infra/main.bicep \
-          --parameters @./infra/parameters.json 
+          --template-file ./cognitive-search-ui/infra/main.bicep \
+          --parameters @./cognitive-search-ui/infra/parameters.json 
